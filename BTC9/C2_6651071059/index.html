@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Butter & Bloom - tiệm bánh ngọt thủ công">
+    <title>Butter & Bloom | Tiệm bánh ngọt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-amber-50 text-stone-800">
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+            <a href="#home" class="text-2xl font-extrabold text-amber-800">Butter <span class="text-rose-500">&</span> Bloom.</a>
+            <button id="menu-toggle" class="rounded-lg border px-3 py-2 text-2xl md:hidden" aria-label="Mở menu">☰</button>
+            <div class="hidden items-center gap-6 md:flex">
+                <a class="nav-link" href="#home">Trang chủ</a>
+                <a class="nav-link" href="#menu">Menu bánh</a>
+                <a class="nav-link" href="#story">Câu chuyện</a>
+                <a class="nav-link" href="#order">Đặt bánh</a>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden border-t bg-white px-5 pb-4 md:hidden">
+            <a class="mobile-link" href="#home">Trang chủ</a>
+            <a class="mobile-link" href="#menu">Menu bánh</a>
+            <a class="mobile-link" href="#story">Câu chuyện</a>
+            <a class="mobile-link" href="#order">Đặt bánh</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-bg">
+            <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
+                <div>
+                    <span class="rounded-full bg-rose-100 px-4 py-2 text-sm font-bold text-rose-700">Bánh tươi mỗi ngày</span>
+                    <h1 class="mt-6 text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">Một chút ngọt ngào, <span class="text-amber-700">cả ngày vui.</span></h1>
+                    <p class="mt-5 text-lg leading-8 text-stone-600">Những chiếc bánh thủ công được làm mới mỗi sáng từ nguyên liệu chọn lọc và thật nhiều yêu thương.</p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#menu" class="rounded-full bg-amber-700 px-7 py-3 font-bold text-white transition hover:bg-amber-900">Khám phá menu →</a>
+                        <a href="#order" class="rounded-full border border-amber-300 bg-white px-7 py-3 font-bold text-amber-800 transition hover:bg-amber-100">Đặt bánh ngay</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img class="hero-image" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=80" alt="Bánh kem dâu tây">
+                    <div class="floating-note">🍰 <div><strong>Bánh tươi mỗi ngày</strong><p class="text-sm text-stone-500">Làm bằng cả trái tim</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="mx-auto max-w-7xl px-5 py-20">
+            <div class="mb-10 text-center">
+                <p class="section-label">NGỌT NGÀO MỖI NGÀY</p>
+                <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Menu bánh được yêu thích</h2>
+                <p class="mt-3 text-stone-600">Những hương vị dành cho mọi khoảnh khắc.</p>
+            </div>
+
+            <!-- Tailwind sử dụng utility class để tự phối giao diện từng thẻ bánh.
+                 Khác Bootstrap, bài này không sử dụng Card component dựng sẵn. -->
+            <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+                <article class="cake-card">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80" alt="Bánh kem dâu">
+                    <div class="p-5"><h3 class="text-xl font-bold">Bánh kem dâu</h3><p class="mt-2 text-stone-600">Kem tươi mềm mịn, dâu tây chua ngọt.</p><p class="price">320.000đ</p><a class="cake-link" href="#order">Đặt bánh →</a></div>
+                </article>
+                <article class="cake-card">
+                    <img src="https://images.unsplash.com/photo-1551024506-0d5b6c4b7a3f?auto=format&fit=crop&w=700&q=80" alt="Bánh donut">
+                    <div class="p-5"><h3 class="text-xl font-bold">Donut cầu vồng</h3><p class="mt-2 text-stone-600">Bánh mềm xốp với lớp phủ ngọt dịu.</p><p class="price">35.000đ</p><a class="cake-link" href="#order">Đặt bánh →</a></div>
+                </article>
+                <article class="cake-card">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Bánh tart">
+                    <div class="p-5"><h3 class="text-xl font-bold">Tart trái cây</h3><p class="mt-2 text-stone-600">Đế tart giòn thơm, kem vani và trái cây.</p><p class="price">55.000đ</p><a class="cake-link" href="#order">Đặt bánh →</a></div>
+                </article>
+                <article class="cake-card">
+                    <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=700&q=80" alt="Bánh chocolate">
+                    <div class="p-5"><h3 class="text-xl font-bold">Chocolate mousse</h3><p class="mt-2 text-stone-600">Vị cacao đậm đà, kết cấu mềm mịn.</p><p class="price">68.000đ</p><a class="cake-link" href="#order">Đặt bánh →</a></div>
+                </article>
+                <article class="cake-card">
+                    <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=700&q=80" alt="Bánh croissant">
+                    <div class="p-5"><h3 class="text-xl font-bold">Croissant bơ</h3><p class="mt-2 text-stone-600">Vỏ bánh vàng giòn, thơm mùi bơ.</p><p class="price">32.000đ</p><a class="cake-link" href="#order">Đặt bánh →</a></div>
+                </article>
+                <article class="cake-card">
+                    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80" alt="Bánh cupcake">
+                    <div class="p-5"><h3 class="text-xl font-bold">Cupcake vanilla</h3><p class="mt-2 text-stone-600">Nhỏ xinh, thơm vanilla, phù hợp tiệc trà.</p><p class="price">39.000đ</p><a class="cake-link" href="#order">Đặt bánh →</a></div>
+                </article>
+            </div>
+        </section>
+
+        <section id="story" class="bg-white py-20">
+            <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 md:grid-cols-2">
+                <img class="story-image" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Bánh mới ra lò">
+                <div>
+                    <p class="section-label">CÂU CHUYỆN CỦA CHÚNG MÌNH</p>
+                    <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Làm bánh bằng tay, trao gửi bằng tim.</h2>
+                    <p class="mt-5 leading-8 text-stone-600">Butter & Bloom bắt đầu từ căn bếp nhỏ và niềm tin rằng <strong class="text-amber-700">một chiếc bánh ngon có thể làm ngày bình thường trở nên đặc biệt</strong>.</p>
+                    <p class="mt-4 leading-8 text-stone-600">Chúng mình chọn nguyên liệu kỹ lưỡng, làm bánh theo từng mẻ nhỏ và chăm chút từng chi tiết.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="order" class="mx-auto max-w-7xl px-5 py-20">
+            <div class="grid gap-8 lg:grid-cols-3">
+                <div class="rounded-3xl bg-white p-7 shadow-sm lg:col-span-2 sm:p-10">
+                    <h2 class="text-3xl font-extrabold">Đặt bánh theo yêu cầu</h2>
+                    <p class="mt-3 text-stone-600">Điền thông tin để tiệm tư vấn mẫu bánh phù hợp.</p>
+                    <form id="order-form" class="mt-7 grid gap-5 sm:grid-cols-2">
+                        <div><label class="form-label" for="name">Họ và tên</label><input class="form-input" id="name" name="name" required placeholder="Tên của bạn"></div>
+                        <div><label class="form-label" for="phone">Số điện thoại</label><input class="form-input" id="phone" name="phone" type="tel" required placeholder="09xx xxx xxx"></div>
+                        <div><label class="form-label" for="cake">Loại bánh</label><select class="form-input" id="cake" name="cake" required><option value="">Chọn loại bánh</option><option>Bánh kem dâu</option><option>Donut cầu vồng</option><option>Tart trái cây</option><option>Chocolate mousse</option><option>Croissant bơ</option><option>Cupcake vanilla</option><option>Bánh thiết kế riêng</option></select></div>
+                        <div><label class="form-label" for="date">Ngày cần bánh</label><input class="form-input" id="date" name="date" type="date" required></div>
+                        <div class="sm:col-span-2"><label class="form-label" for="note">Ghi chú</label><textarea class="form-input" id="note" name="note" rows="4" placeholder="Kích thước, màu sắc, lời chúc..."></textarea></div>
+                        <div class="sm:col-span-2"><button class="rounded-xl bg-amber-700 px-6 py-3 font-bold text-white hover:bg-amber-900" type="submit">Gửi yêu cầu</button><p id="form-message" class="mt-3 text-sm font-semibold text-green-700"></p></div>
+                    </form>
+                </div>
+                <aside class="rounded-3xl border border-amber-200 bg-amber-100 p-7">
+                    <div class="text-3xl">🎂</div><h3 class="mt-4 text-2xl font-extrabold">Ưu đãi khách mới</h3>
+                    <p class="mt-3 leading-7 text-stone-600">Giảm 10% cho đơn hàng đầu tiên khi đặt bánh trước ít nhất 24 giờ.</p>
+                    <div class="mt-5 rounded-xl bg-white p-4"><p class="text-sm text-stone-500">Hotline</p><p class="text-xl font-extrabold text-amber-800">0901 234 567</p></div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-900 text-stone-200">
+        <div class="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">
+            <div><h3 class="text-xl font-extrabold text-white">Butter & Bloom.</h3><p class="mt-3 text-sm leading-6 text-stone-400">Tiệm bánh nhỏ cho những khoảnh khắc ngọt ngào.</p></div>
+            <div><h3 class="font-bold text-white">Liên hệ</h3><p class="mt-3 text-sm leading-7 text-stone-400">25 Nguyễn Trãi, TP.HCM<br>0901 234 567<br>hello@butterbloom.vn</p></div>
+            <div><h3 class="font-bold text-white">Giờ mở cửa</h3><p class="mt-3 text-sm leading-7 text-stone-400">Thứ 2–6: 7:00–21:00<br>Thứ 7–CN: 8:00–22:00</p></div>
+            <div><h3 class="font-bold text-white">Mạng xã hội</h3><p class="mt-3 text-sm leading-7 text-stone-400">Facebook · Instagram · TikTok</p><p class="mt-3 text-xs text-stone-500">© 2026 Butter & Bloom.</p></div>
+        </div>
+    </footer>
+    <button id="back-to-top" aria-label="Lên đầu trang">↑</button>
+    <script src="script.js"></script>
+</body>
+</html>

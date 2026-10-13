@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MobiNest - shop phụ kiện điện thoại">
+    <title>MobiNest | Phụ kiện điện thoại</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="site-header">
+            <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4">
+                <a href="#home" class="logo">mobi<span>Nest</span>.</a>
+                <div class="hidden items-center gap-6 md:flex">
+                    <a href="#home" class="nav-link">Trang chủ</a>
+                    <a href="#products" class="nav-link">Sản phẩm</a>
+                    <a href="#promotion" class="nav-link">Khuyến mãi</a>
+                    <a href="#contact" class="nav-link">Liên hệ</a>
+                </div>
+                <a href="#cart" class="cart-button">
+                    🛒 Giỏ hàng <span>{{ cartCount }}</span>
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home" class="hero">
+                <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-2">
+                    <div>
+                        <p class="eyebrow">PHỤ KIỆN CÔNG NGHỆ</p>
+                        <h1 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+                            Phụ kiện chất lượng,
+                            <span class="text-cyan-600">phong cách của bạn.</span>
+                        </h1>
+                        <p class="mt-5 leading-8 text-slate-600">
+                            Khám phá các mẫu ốp lưng, tai nghe, sạc và phụ kiện hữu ích dành cho điện thoại của bạn.
+                        </p>
+                        <a href="#products" class="primary-button mt-7 inline-block">Mua sắm ngay →</a>
+                    </div>
+                    <img class="hero-image" src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1000&q=80" alt="Phụ kiện điện thoại">
+                </div>
+            </section>
+
+            <section id="products" class="mx-auto max-w-7xl px-5 py-16">
+                <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+                    <div>
+                        <p class="eyebrow">GIAN HÀNG MOBINEST</p>
+                        <h2 class="mt-2 text-3xl font-black">Sản phẩm nổi bật</h2>
+                        <p class="mt-3 text-slate-600">Tìm sản phẩm và thêm vào giỏ hàng để xem tổng tiền.</p>
+                    </div>
+                    <input
+                        v-model="tuKhoa"
+                        type="search"
+                        class="search-input"
+                        placeholder="Tìm kiếm sản phẩm..."
+                        aria-label="Tìm kiếm sản phẩm">
+                </div>
+
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <button class="filter-button" :class="{active: danhMuc === 'Tất cả'}" @click="danhMuc = 'Tất cả'">Tất cả</button>
+                    <button class="filter-button" :class="{active: danhMuc === 'Ốp lưng'}" @click="danhMuc = 'Ốp lưng'">Ốp lưng</button>
+                    <button class="filter-button" :class="{active: danhMuc === 'Âm thanh'}" @click="danhMuc = 'Âm thanh'">Âm thanh</button>
+                    <button class="filter-button" :class="{active: danhMuc === 'Sạc và cáp'}" @click="danhMuc = 'Sạc và cáp'">Sạc và cáp</button>
+                    <button class="filter-button" :class="{active: danhMuc === 'Khác'}" @click="danhMuc = 'Khác'">Khác</button>
+                </div>
+
+                <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <article v-for="sp in danhSachLoc" :key="sp.id" class="product-card">
+                        <div class="product-image-wrap">
+                            <span v-if="sp.nhan" class="product-badge">{{ sp.nhan }}</span>
+                            <img :src="sp.anh" :alt="sp.ten" class="product-image" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <p class="text-xs font-bold uppercase tracking-wider text-cyan-700">{{ sp.danhMuc }}</p>
+                            <h3 class="mt-2 text-lg font-extrabold">{{ sp.ten }}</h3>
+                            <p class="mt-2 min-h-10 text-sm leading-6 text-slate-500">{{ sp.moTa }}</p>
+                            <div class="mt-4 flex items-center justify-between gap-2">
+                                <span class="product-price">{{ dinhDangTien(sp.gia) }}</span>
+                                <button class="add-button" @click="themVaoGio(sp)">+ Thêm</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <p v-if="danhSachLoc.length === 0" class="mt-8 text-center text-slate-500">
+                    Không tìm thấy sản phẩm phù hợp.
+                </p>
+            </section>
+
+            <section id="cart" class="cart-section">
+                <div class="mx-auto grid max-w-7xl gap-8 px-5 py-16 lg:grid-cols-3">
+                    <div class="lg:col-span-2">
+                        <p class="eyebrow">GIỎ HÀNG CỦA BẠN</p>
+                        <h2 class="mt-2 text-3xl font-black">Giỏ hàng của bạn</h2>
+
+                        <div v-if="cart.length === 0" class="empty-cart mt-6">
+                            <div class="text-5xl">🛒</div>
+                            <h3 class="mt-4 text-xl font-extrabold">Giỏ hàng trống</h3>
+                            <p class="mt-2 text-slate-500">Hãy thêm sản phẩm bạn yêu thích.</p>
+                            <a href="#products" class="primary-button mt-5 inline-block">Xem sản phẩm</a>
+                        </div>
+
+                        <div v-else class="mt-6 space-y-4">
+                            <article v-for="(sp, index) in cart" :key="sp.id" class="cart-item">
+                                <img :src="sp.anh" :alt="sp.ten">
+                                <div class="min-w-0 flex-1">
+                                    <h3 class="font-extrabold">{{ sp.ten }}</h3>
+                                    <p class="mt-1 text-sm text-slate-500">{{ dinhDangTien(sp.gia) }}</p>
+                                    <div class="mt-3 flex items-center gap-3">
+                                        <button class="quantity-button" @click="giamSoLuong(index)" :disabled="sp.soLuong <= 1">−</button>
+                                        <span class="font-bold">{{ sp.soLuong }}</span>
+                                        <button class="quantity-button" @click="tangSoLuong(index)">+</button>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <strong>{{ dinhDangTien(sp.gia * sp.soLuong) }}</strong>
+                                    <button class="remove-button mt-3 block" @click="xoaKhoiGio(index)">Xóa</button>
+                                </div>
+                            </article>
+                            <button class="remove-button" @click="xoaTatCa">Xóa toàn bộ giỏ hàng</button>
+                        </div>
+                    </div>
+
+                    <aside class="order-summary">
+                        <h3 class="text-xl font-extrabold">Tóm tắt đơn hàng</h3>
+                        <div class="mt-6 flex justify-between gap-3">
+                            <span class="text-slate-600">Số lượng</span>
+                            <span class="font-bold">{{ cartCount }}</span>
+                        </div>
+                        <div class="mt-4 flex justify-between gap-3">
+                            <span class="text-slate-600">Tạm tính</span>
+                            <span>{{ dinhDangTien(tongTien) }}</span>
+                        </div>
+                        <div class="mt-4 flex justify-between gap-3">
+                            <span class="text-slate-600">Vận chuyển</span>
+                            <span class="font-bold text-green-600">{{ cart.length ? 'Miễn phí' : '—' }}</span>
+                        </div>
+                        <hr class="my-6">
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="font-bold">Tổng cộng</span>
+                            <strong class="text-xl text-cyan-700">{{ dinhDangTien(tongTien) }}</strong>
+                        </div>
+                        <button class="checkout-button mt-6 w-full" @click="datHang" :disabled="cart.length === 0">
+                            Tiến hành đặt hàng
+                        </button>
+                        <p v-if="thongBao" class="mt-4 rounded-lg bg-green-50 p-3 text-sm text-green-700" role="status">
+                            {{ thongBao }}
+                        </p>
+                        <p class="mt-4 text-xs leading-5 text-slate-400">
+                            Đây là bản demo học tập, chưa kết nối thanh toán hoặc máy chủ.
+                        </p>
+                    </aside>
+                </div>
+            </section>
+
+            <section id="promotion" class="mx-auto max-w-7xl px-5 py-16">
+                <div class="promotion-box">
+                    <div>
+                        <p class="text-sm font-bold tracking-widest text-cyan-100">KHUYẾN MÃI HÔM NAY</p>
+                        <h2 class="mt-3 text-3xl font-black text-white">Ưu đãi dành cho bạn</h2>
+                        <p class="mt-3 leading-7 text-cyan-50">Giảm đến 15% cho một số phụ kiện và miễn phí vận chuyển trong chương trình demo.</p>
+                    </div>
+                    <span class="text-5xl text-white">✦</span>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contact" class="site-footer">
+            <div class="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">
+                <div>
+                    <h3 class="text-2xl font-black text-white">mobi<span class="text-cyan-400">Nest</span>.</h3>
+                    <p class="footer-text">Phụ kiện nhỏ, trải nghiệm lớn.</p>
+                </div>
+                <div>
+                    <h3 class="footer-title">Hỗ trợ khách hàng</h3>
+                    <p class="footer-text">Hướng dẫn mua hàng<br>Chính sách đổi trả<br>Chính sách bảo hành</p>
+                </div>
+                <div>
+                    <h3 class="footer-title">Liên hệ</h3>
+                    <p class="footer-text">0901 234 567<br>support@mobinest.vn<br>TP. Hồ Chí Minh</p>
+                </div>
+                <div>
+                    <h3 class="footer-title">Mạng xã hội</h3>
+                    <p class="footer-text">Facebook · Instagram · TikTok</p>
+                    <p class="mt-4 text-xs text-slate-500">© 2026 MobiNest.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

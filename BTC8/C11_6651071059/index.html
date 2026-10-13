@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Home</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h2 class="text-center">Custom File Input</h2>
+
+<div class="custom-file-wrp">
+	<div class="filename" id="filename">
+		Ex:sample.jpg
+	</div>
+	<div class="custom-file">
+		<label for="fileupload">Upload</label>
+		<input type="file"  id="fileupload">
+	</div>
+</div>
+
+
+<div class="file-info" id="fileinfo"></div>
+
+<script src="js/jquery-latest.min.js"></script>
+<script>
+$(function () {
+	var placeholder = $("#filename").text();
+
+	$("#fileupload").on("change", function () {
+		var file = this.files && this.files[0];
+
+		if (!file) {
+			$("#filename").text(placeholder).css("color", "");
+			$("#fileinfo").empty();
+			return;
+		}
+
+		var fullName = file.name;
+		var dot = fullName.lastIndexOf(".");
+		var name = dot > 0 ? fullName.substring(0, dot) : fullName;
+		var ext  = dot > 0 ? fullName.substring(dot + 1) : "";
+
+		$("#filename").text(fullName).css("color", "#333");
+		$("#fileinfo").empty()
+			.append($("<p>").text("Tên file: ").append($("<b>").text(name)))
+			.append($("<p>").text("Phần mở rộng: ").append($("<b>").text(ext ? "." + ext : "(không có)")));
+	});
+});
+</script>
+
+</body>
+</html>

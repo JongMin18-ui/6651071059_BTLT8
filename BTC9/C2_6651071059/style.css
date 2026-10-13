@@ -1,0 +1,160 @@
+
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-link {
+    color: #57534e;
+    font-weight: 600;
+    transition: color .2s;
+}
+
+.nav-link:hover {
+    color: #b45309;
+}
+
+.mobile-link {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid #f5e9d5;
+    color: #57534e;
+    font-weight: 600;
+}
+
+.hero-bg {
+    background: radial-gradient(circle at 85% 20%, #fde8d7, #fff8ee 45%, #fffbf5);
+}
+
+.hero-image {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px #78350f25;
+}
+
+.floating-note {
+    position: absolute;
+    bottom: 20px;
+    left: -10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 10px 30px #0002;
+}
+
+.section-label {
+    color: #b45309;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.cake-card {
+    overflow: hidden;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 8px 25px #442d160d;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.cake-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px #442d1620;
+}
+
+.cake-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.price {
+    margin-top: 15px;
+    color: #b45309;
+    font-weight: 800;
+}
+
+.cake-link {
+    display: block;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f5e9d5;
+    color: #92400e;
+    font-weight: 700;
+}
+
+.story-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #44403c;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-input {
+    width: 100%;
+    border: 1px solid #e7d8c1;
+    border-radius: 10px;
+    background: #fffdf9;
+    padding: 12px 14px;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #d97706;
+    box-shadow: 0 0 0 3px #d9770625;
+}
+
+#back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #b45309;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #0002;
+}
+
+#back-to-top:hover {
+    background: #92400e;
+}
+
+@media (max-width: 767px) {
+    .hero-image {
+        height: 320px;
+    }
+
+    .floating-note {
+        left: 8px;
+        bottom: 10px;
+    }
+
+    .story-image {
+        height: 300px;
+    }
+}
